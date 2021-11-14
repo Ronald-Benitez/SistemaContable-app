@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use DB;
 
 class RegistroController extends Controller
 {
@@ -15,7 +16,11 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        return view('registro.index');
+        $registros = DB::table('registros')
+            ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
+            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto")
+            ->get();
+        return view('registro.index')->with('registros', $registros);
     }
 
     /**
@@ -42,7 +47,33 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $request->validate([
+            'idCuenta' => 'required|max:3',
+            'monto' => 'required|gte:0',
+            'tipo' => 'required|max:1'
+        ]);*/
+
+        $partida =
+            \DB::table('registros')
+            ->select('partida')
+            ->orderby('id', 'DESC')
+            ->take(1)
+            ->get();
+        $cuentas = $_POST['idCuenta'];
+        $montos = $_POST['monto'];
+        $tipos = $_POST['tipoM'];
+
+        for ($i = 0; $i < count($cuentas); $i++) {
+            $registro = Registro::create([
+                "partida" => $partida[0]->partida + 1,
+                "monto" => $montos[$i],
+                "tipoM" => $tipos[$i],
+                "idCuenta" => $cuentas[$i],
+            ]);
+        }
+
+        return redirect()->route('Registro.index');
     }
 
     /**
