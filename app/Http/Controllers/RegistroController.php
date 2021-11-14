@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\session;
 use DB;
 
 class RegistroController extends Controller
@@ -19,6 +20,7 @@ class RegistroController extends Controller
         $registros = DB::table('registros')
             ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
             ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto")
+            ->whereMonth('created_at', date('m'))
             ->get();
         return view('registro.index')->with('registros', $registros);
     }
@@ -36,6 +38,7 @@ class RegistroController extends Controller
             ->get();
 
         $now = Carbon::now();
+
         return view('registro.form')->with('cuentas', $cuentas)->with('now', $now);
     }
 
@@ -47,12 +50,6 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $request->validate([
-            'idCuenta' => 'required|max:3',
-            'monto' => 'required|gte:0',
-            'tipo' => 'required|max:1'
-        ]);*/
 
         $partida =
             \DB::table('registros')
@@ -72,7 +69,9 @@ class RegistroController extends Controller
                 "idCuenta" => $cuentas[$i],
             ]);
         }
-
+        session_start();
+        $_SESSION["estado"] = "Registro éxitoso";
+        $_SESSION["alert"] = "success";
         return redirect()->route('Registro.index');
     }
 
@@ -93,9 +92,21 @@ class RegistroController extends Controller
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Http\Response
      */
-    public function edit(Registro $registro)
+    public function edit($registro)
     {
-        //
+        $cuentas = \DB::table('cuentas')
+            ->select('cuentas.idC', 'cuentas.nombre')
+            ->orderby('id', 'ASC')
+            ->get();
+
+        $registros = DB::table('registros')
+            ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
+            ->select('registros.id', 'registros.created_at', 'registros.partida', 'idC', 'cuentas.nombre', "registros.tipoM", "registros.monto")
+            ->where('partida', $registro)
+            ->get();
+
+        $now = Carbon::now();
+        return view('registro.form')->with('cuentas', $cuentas)->with('now', $now)->with("partida", $registro)->with("registros", $registros);
     }
 
     /**
@@ -105,9 +116,28 @@ class RegistroController extends Controller
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Registro $registro)
+    public function update(Request $request, $registro)
     {
-        //
+        $ids = $_POST['id'];
+        $cuentas = $_POST['idCuenta'];
+        $montos = $_POST['monto'];
+        $tipos = $_POST['tipoM'];
+
+
+
+        for ($i = 0; $i < count($cuentas); $i++) {
+            $data = array(
+                "monto" => $montos[$i],
+                "tipoM" => $tipos[$i],
+                "idCuenta" => $cuentas[$i],
+            );
+            $rUpdate = Registro::where('id', $ids[$i]);
+            $rUpdate->update($data);
+        }
+        session_start();
+        $_SESSION["estado"] = "Actualización éxitosa";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('Registro.index');
     }
 
     /**
@@ -116,8 +146,14 @@ class RegistroController extends Controller
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Registro $registro)
+    public function destroy($registro)
     {
-        //
+        DB::table('registros')
+            ->where('partida', $registro)
+            ->delete();
+        session_start();
+        $_SESSION["estado"] = "Eliminado éxitoso";
+        $_SESSION["alert"] = "danger";
+        return redirect()->route('Registro.index');
     }
 }
