@@ -3,12 +3,43 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="text-center">Ingresar partida</h1>
- 
-        <form action="{{ route('Registro.store') }}" method="post">
+
+        @if (isset($partida))
+            <h1 class="text-center">Actualizar partida</h1>
+            <form action="{{ route('Registro.update',$partida) }}" method="post">
+            @method('PUT')
+        @else
+            <h1 class="text-center">Ingresar partida</h1>
+            <form action="{{ route('Registro.store') }}" method="post">
+        @endif
+        
             @csrf
 
             <table class="table table-responsive " id="tabla">
+                @if(isset($partida))
+                    @foreach($registros as $registro)
+                    <tr>
+                        <input type="text" class="invisible" name="id[]" value="{{$registro->id}}">
+                    <td><input type="datetime" required value="{{$registro->created_at}}" class="form-control" readonly></td>
+                    <td>
+                        <select class="form-select idC" aria-label="Default select example" name="idCuenta[]" onchange="balance()">
+                            <option selected value="{{$registro->idC}}">{{$registro->nombre}}</option>
+                            @foreach($cuentas as $cuenta)
+                            <option value="{{$cuenta->idC}}">{{$cuenta->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td><input type="number" name="monto[]" min="0.00" step="0.01" placeholder="monto ($)" class="form-control monto" onkeyup="balance()" value="{{$registro->monto}}"</td>
+                    <td>
+                        <select class="form-select tipo" aria-label="Default select example" onchange="balance()" name="tipoM[]">
+                            <option selected value="{{$registro->tipoM}}">Tipo</option>
+                            <option value="1">Cargo</option>
+                            <option value="2">Abono</option>
+                        </select>
+                    </td>
+                </tr>
+                    @endforeach
+                @else
                 <tr class="fila-fija">
                     <td><input type="datetime" required value="{{$now}}" class="form-control" readonly></td>
                     <td>
@@ -27,12 +58,25 @@
                             <option value="2">Abono</option>
                         </select>
                     </td>
-                    <td class="eliminar"><input type="button" value="-" class="btn btn-danger" ></td>
+                    <td class="eliminar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </td>
                 </tr>
+                @endif
             </table>
             <div class="btn-group p-4">
-                <input id="insertar" type="submit" value="Registrar" class="btn btn-info">
-                <button id="adicional" class="btn btn-warning">Nueva fila</button>
+                @if (isset($partida))
+                    <input id="insertar" type="submit" value="Actualizar" class="btn btn-info">
+                    <a href="{{ route('Registro.index')}}" class="btn btn-warning">Cancelar</a>
+                @else
+                    <input id="insertar" type="submit" value="Registrar" class="btn btn-info">
+                    <button id="adicional" class="btn btn-warning">Nueva fila</button>
+                    <a href="{{ route('Registro.index')}}" class="btn btn-warning">Cancelar</a>
+                @endif
+                
             </div>
         </form>
         <div class="container">
@@ -49,6 +93,7 @@
 @section('script')
     <script>
         $(function(){
+            balance();
             $("#adicional").click(function(){
                 $("#tabla tbody tr:eq(0)").clone().removeClass("fila-fija").appendTo("#tabla");
             });
@@ -88,17 +133,19 @@
                 montos.forEach(function(item,index){
                     
                     if(tipo[index].value==1){
-                        aux=parseInt(item.value,10)
+                        aux=parseFloat(item.value);
                         if(aux>=0){
                             debe+=aux
                         }
                     }else{
-                        aux=parseInt(item.value,10)
+                        aux=parseFloat(item.value);
                         if(aux>=0){
                             haber+=aux
                         }
                     }
                 })
+                debe = debe.toFixed(2)
+                haber = haber.toFixed(2)
                 $("#debe").val(debe)
                 $("#haber").val(haber)
 
