@@ -5,14 +5,14 @@
     <div class="container py-5">
         <h1 class="text-center">Ingresar partida</h1>
  
-        <form action="#" method="post">
+        <form action="{{ route('Registro.store') }}" method="post">
             @csrf
 
             <table class="table table-responsive " id="tabla">
                 <tr class="fila-fija">
                     <td><input type="datetime" required value="{{$now}}" class="form-control" readonly></td>
                     <td>
-                        <select class="form-select idC" aria-label="Default select example" name="idCuenta[]">
+                        <select class="form-select idC" aria-label="Default select example" name="idCuenta[]" onchange="balance()">
                             <option selected value="">Cuenta</option>
                             @foreach($cuentas as $cuenta)
                             <option value="{{$cuenta->idC}}">{{$cuenta->nombre}}</option>
@@ -31,7 +31,7 @@
                 </tr>
             </table>
             <div class="btn-group p-4">
-                <input id="insertar" type="submit" name="insertar" value="Registrar" class="btn btn-info">
+                <input id="insertar" type="submit" value="Registrar" class="btn btn-info">
                 <button id="adicional" class="btn btn-warning">Nueva fila</button>
             </div>
         </form>
