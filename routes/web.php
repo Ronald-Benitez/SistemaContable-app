@@ -4,6 +4,8 @@ use App\Http\Controllers\RegistroController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MayorController;
+use App\Http\Controllers\WelcomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::resource('Registro', RegistroController::class);
 Route::resource('mayor', MayorController::class);
+Route::resource('Welcome', WelcomeController::class);

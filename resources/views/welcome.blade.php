@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="text-center">eeeeeeee vegeta</h1>
+        <h1 class="text-center">Working in progress</h1>
 
         @if (isset($_SESSION['estado']))
             <div class="alert alert-{{ $_SESSION['alert'] }}" role="alert">
