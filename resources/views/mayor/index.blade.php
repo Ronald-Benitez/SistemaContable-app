@@ -10,8 +10,8 @@
         <p class="fs-1 text-center rounded-pill border border-dark ">Libro mayor</p>
     </div>
 
-    <div class="container-sm d-flex flex-row flex-wrap justify-content-between ">
-        <div class="col-3 m-3">
+    <div class="container-fluid row d-flex flex-wrap flex-sm-wrap justify-content-evenly">
+        <div class="col-sm-7 col-md-6 col-lg-3 container-fluid m-3">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -54,7 +54,7 @@
             </table>
         </div>
 
-        <div class="col-3 m-3">
+        <div class="col-sm-7 col-md-6 col-lg-3 container-fluid m-3">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -113,7 +113,7 @@
     </div>
     <i class="bi bi-arrow-left-circle-fill"></i>
 
-    <a href="/SistemaContable-app/public/" class="btn btn-secondary ms-5 mb-3">
+    <a href="{{ route('Welcome.index') }}" class="btn btn-secondary ms-5 mb-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
             <path

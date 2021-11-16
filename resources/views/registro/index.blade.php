@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    <a href="/SistemaContable-app/public/" class="btn btn-secondary ms-5 mb-3">
+    <a href="{{ route('Welcome.index') }}" class="btn btn-secondary ms-5 mb-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
             <path
