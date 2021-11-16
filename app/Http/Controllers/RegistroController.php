@@ -81,9 +81,20 @@ class RegistroController extends Controller
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Http\Response
      */
-    public function show(Registro $registro)
+    public function show($registro)
     {
-        //
+        $registros = DB::table('registros')
+            ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
+            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto")
+            ->whereMonth('created_at', $registro)
+            ->get();
+        if (empty($registros[0])) {
+            session_start();
+            $_SESSION["estado"] = "Sin datos para mostrar";
+            $_SESSION["alert"] = "warning";
+            return view('welcome');
+        }
+        return view('registro.index')->with('registros', $registros);
     }
 
     /**

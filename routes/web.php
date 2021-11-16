@@ -20,4 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('Registro', RegistroController::class);
-Route::get('mayor', [MayorController::class, 'index']);
+Route::resource('mayor', MayorController::class);
