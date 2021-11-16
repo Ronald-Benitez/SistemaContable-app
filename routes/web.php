@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\RegistroController;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MayorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('Registro', RegistroController::class);
+Route::get('mayor', [MayorController::class, 'index']);
