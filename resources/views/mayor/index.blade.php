@@ -3,7 +3,6 @@
 @section('content')
     @php
     $flag = $registros[0]->nombre;
-    $flag = 0;
     $sumDebe = 0; //izquierda
     $sumHaber = 0;
     @endphp
