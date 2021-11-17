@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MayorController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ComprobacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/', function () {
 Route::resource('Registro', RegistroController::class);
 Route::resource('mayor', MayorController::class);
 Route::resource('Welcome', WelcomeController::class);
+Route::resource('Comprobacion', ComprobacionController::class);
