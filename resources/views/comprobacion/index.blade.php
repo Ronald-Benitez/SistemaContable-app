@@ -12,7 +12,7 @@
     </div>
     <div class="container">
         <div class="table-responsive">
-            <table class="table ">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Cuenta</th>
@@ -70,12 +70,15 @@
 
                         @endforeach
                     @endforeach
+                <tfoot>
                     <tr>
                         <td></td>
                         <td><b>Total</b></td>
                         <td><b>{{ $debe }}</b></td>
                         <td><b>{{ $haber }}</b></td>
                     </tr>
+                </tfoot>
+
                 </tbody>
             </table>
         </div>
