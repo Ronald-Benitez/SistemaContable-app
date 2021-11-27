@@ -10,8 +10,9 @@
         );
 @endphp
 
-@include('theme.alert')
+
 <div class="container mt-5">
+    @include('theme.alert')
     @error('costoName')
         <div class="alert alert-warning mensaje">
             {{ $message }}
@@ -49,34 +50,39 @@
                     <td><b>{{$registro->costoName}}</b></td>
                     <td>${{$registro->monto}}</td>
                     @if ($registro->type=='MD')
-                        <th>${{$registro->monto}}</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <td>${{$registro->monto}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     @endif
                     @if ($registro->type=='MOD')
-                        <th></th>
-                        <th>${{$registro->monto}}</th>
-                        <th></th>
-                        <th></th>
+                        <td></td>
+                        <td>${{$registro->monto}}</td>
+                        <td></td>
+                        <td></td>
                     @endif
                     @if ($registro->type=='CIF')
-                        <th></th>
-                        <th></th>
-                        <th>${{$registro->monto}}</th>
-                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td>${{$registro->monto}}</td>
+                        <td></td>
                     @endif
                     @if ($registro->type=='Periodo')
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>${{$registro->monto}}</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>${{$registro->monto}}</td>
                     @endif
                     <td>
-                        <a class="btn btn-warning">
+                        <a class="btn btn-warning editar" href="{{route('Costos.edit',$registro->id)}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                              </svg>
+                        </a>
+                        <a class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                               </svg>
                         </a>
                     </td>
@@ -88,22 +94,30 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2">Total</td>
-                <td>${{$sum['MD']}}</td>
-                <td>${{$sum['MOD']}}</td>
-                <td>${{$sum['CIF']}}</td>
-                <td>${{$sum['Periodo']}}</td>
+                <th colspan="2">Total</th>
+                <th>${{$sum['MD']}}</th>
+                <th>${{$sum['MOD']}}</th>
+                <th>${{$sum['CIF']}}</th>
+                <th>${{$sum['Periodo']}}</th>
+                <td><a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#datos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                        <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                        <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+                      </svg>
+                    Datos
+                </a></td>
             </tr>
             
         </tfoot>
     </table>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-info me-md-2"">Volver al inicio</a>
         <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarCosto">Ingresar Nuevos costos</a>
       </div>
 </div>
 
 @include('Costos.create')
+@include('Costos.calculos')
 @endsection
 
 
@@ -122,4 +136,34 @@
         $(".mensaje").remove();
     }, 5000);
 </script>
+
+<script>
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
+    $(document).ready(function() {
+        
+        var ctp = document.getElementById('ctp').innerHTML
+
+        $('#cProduct,#ganacias').on('input', function() {
+
+            var costos = $('#cProduct').val();
+            var ganacias = ($('#ganacias').val())/100;
+            console.log(formatter.format((ctp/costos)*(1+ganacias)));
+
+            //agignar valores
+            $('#costoU').text(formatter.format(ctp/costos));
+            $('#precioU').text(formatter.format((ctp/costos)*(1+ganacias)));
+            
+            $('#precioIVA').text(formatter.format((ctp/costos)*(1+ganacias)*1.13));
+        });       
+        
+    });
+   
+</script>
+
 @endsection
