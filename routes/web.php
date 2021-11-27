@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MayorController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ComprobacionController;
+use App\Http\Controllers\RegistroCostoController;
+use App\Http\Controllers\ListaCostosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,6 @@ Route::resource('Registro', RegistroController::class);
 Route::resource('mayor', MayorController::class);
 Route::resource('Welcome', WelcomeController::class);
 Route::resource('Comprobacion', ComprobacionController::class);
+Route::resource('Costos', RegistroCostoController::class);
+
+Route::delete('LCostos/{id}', [ListaCostosController::class, 'delete'])->name('LCostos.delete');
