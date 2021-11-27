@@ -121,6 +121,32 @@
                 </li>
             </ul>
         </div>
+
+        {{-- Balance general --}}
+        <a href=" {{ route('General.index') }}" class="btn btn-secondary m-2">Balance general actual</a>
+        <div class="dropdown m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Balance general por mes
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ route('General.show', '1') }}">Enero</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '2') }}">Febrero</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '3') }}">Marzo</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '4') }}">Abril</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '5') }}">Mayo</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '6') }}">Junio</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '7') }}">Julio</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '8') }}">Agosto</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '9') }}">Septiembre</a>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '10') }}">Octubre</a></li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '11') }}">Noviembre</a>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('General.show', '12') }}">Diciembre</a>
+                </li>
+            </ul>
+        </div>
     </div>
     </div>
 @endsection
