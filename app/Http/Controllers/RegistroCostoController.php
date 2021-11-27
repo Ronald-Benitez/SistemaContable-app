@@ -72,7 +72,7 @@ class RegistroCostoController extends Controller
      */
     public function show(RegistroCosto $cuentas)
     {
-        //
+        $registro = RegistroCosto::where('id', $cuentas)->first();
     }
 
     /**
@@ -81,9 +81,10 @@ class RegistroCostoController extends Controller
      * @param  \App\Models\RegistroCosto  $cuentas
      * @return \Illuminate\Http\Response
      */
-    public function edit(RegistroCosto $cuentas)
-    {
-        //
+    public function edit($id)
+    {   
+        $registro = RegistroCosto::where('id', $id)->first();
+        return view('Costos.edit',compact('registro'));
     }
 
     /**
@@ -93,9 +94,29 @@ class RegistroCostoController extends Controller
      * @param  \App\Models\RegistroCosto  $cuentas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RegistroCosto $cuentas)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'costoName' => 'required',
+            'monto' => 'required',
+            'type' => 'required',
+        ]);
+
+        $registro = RegistroCosto::where('id', $id)->first();
+        $cuentas=([
+            'costoName'=>$request->costoName,
+            'monto'=>$request->monto,
+            'type'=> $request->type,
+            'id'=>$request->id,
+            'LCostos_id'=>$request->LCostos_id
+        ]);
+        $registro->update($cuentas);
+        
+        session()->put('alert', "success");
+        session()->put('estado', "¡ Resitro de costo agregado !");
+        
+        return redirect()->route('Costos.index');
+        
     }
 
     /**
