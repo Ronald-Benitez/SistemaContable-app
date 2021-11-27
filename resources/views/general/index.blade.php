@@ -40,14 +40,14 @@
                                 <td>{{ $row->nombre }}</td>
                                 @if ($row->saldo >= 0)
                                     @if ($row->tipoC == '1')
-                                        <td>{{ abs($row->saldo) }}</td>
+                                        <td>{{ number_format(abs($row->saldo), 2) }}</td>
                                         <td></td>
                                         @php
                                             $debe += abs($row->saldo);
                                         @endphp
                                     @else
                                         <td></td>
-                                        <td>{{ abs($row->saldo) }}</td>
+                                        <td>{{ number_format(abs($row->saldo), 2) }}</td>
                                         @php
                                             $haber += abs($row->saldo);
                                         @endphp
@@ -55,7 +55,7 @@
                                 @else
                                     @if ($row->tipoC == '1')
                                         <td></td>
-                                        <td>{{ abs($row->saldo) }}</td>
+                                        <td>{{ number_format(abs($row->saldo), 2) }}</td>
                                         @php
                                             $haber += abs($row->saldo);
                                         @endphp
@@ -63,7 +63,7 @@
                                         @php
                                             $debe += abs($row->saldo);
                                         @endphp
-                                        <td>{{ abs($row->saldo) }}</td>
+                                        <td>{{ number_format(abs($row->saldo), 2) }}</td>
                                         <td></td>
                                     @endif
                                 @endif
