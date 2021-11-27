@@ -95,6 +95,32 @@
                 </li>
             </ul>
         </div>
+
+        {{-- Estado de resultados --}}
+        <a href=" {{ route('Resultados.index') }}" class="btn btn-secondary m-2">Estado de resultados actual</a>
+        <div class="dropdown m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Estado de resultados por mes
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '1') }}">Enero</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '2') }}">Febrero</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '3') }}">Marzo</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '4') }}">Abril</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '5') }}">Mayo</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '6') }}">Junio</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '7') }}">Julio</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '8') }}">Agosto</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '9') }}">Septiembre</a>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '10') }}">Octubre</a></li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '11') }}">Noviembre</a>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('Resultados.show', '12') }}">Diciembre</a>
+                </li>
+            </ul>
+        </div>
     </div>
     </div>
 @endsection
