@@ -2,7 +2,7 @@
 @extends('theme.base')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container mt-3 py-5">
 
         @if (isset($partida))
             <h1 class="text-center">Actualizar partida</h1>

@@ -1,21 +1,11 @@
 @extends('theme.base')
 
 @section('content')
+@include('theme.alert')
     <div class="container py-5">
         <h1 class="text-center">Working in progress</h1>
 
-        @if (isset($_SESSION['estado']))
-            <div class="alert alert-{{ $_SESSION['alert'] }}" role="alert">
-                {{ $_SESSION['estado'] }}
-            </div>
-        @endif
-
-        <?php
-        if (isset($_SESSION['estado'])) {
-            unset($_SESSION['estado']);
-            unset($_SESSION['alert']);
-        }
-        ?>
+        
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             {{-- Libro diario --}}
             <a href="{{ route('Registro.index') }}" class="btn btn-secondary m-2">Libro diario actual</a>
