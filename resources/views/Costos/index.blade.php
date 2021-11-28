@@ -2,7 +2,7 @@
 
 @section('css')
     <style>
-        .dropdown-menu {
+        .dropper {
         max-height: 200px;
         overflow-y: auto;
     }
@@ -135,7 +135,7 @@
         </tfoot>
     </table>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-info me-md-2"">Volver al inicio</a>
+        <a class="btn btn-info me-md-2" href="{{route('Welcome.index') }}"">Volver al inicio</a>
         <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarCosto">Ingresar Nuevos costos</a>
         @if (session()->get('typeUser')=='user')    
                 <td><a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#datos">
@@ -146,12 +146,12 @@
                     Datos
                 </a></td>
                 @endif
-                <div class="dropdown ms-2">
+            <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Libro diario por mes
+                    Registro de costos Por mes
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu dropper" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="{{ route('Costos.show', 1) }}">Enero</a></li>
                     <li><a class="dropdown-item" href="{{ route('Costos.show', 2) }}">Febrero</a></li>
                     <li><a class="dropdown-item" href="{{ route('Costos.show', 3) }}">Marzo</a></li>
