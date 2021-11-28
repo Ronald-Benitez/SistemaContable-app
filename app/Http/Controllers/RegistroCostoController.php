@@ -17,7 +17,7 @@ class RegistroCostoController extends Controller
     public function index()
     
     {
-        $idCostosMes = $this->comprobarMes();
+        $idCostosMes = $this->comprobarMes(date('m'));
         $Costos = DB::table('registro_costos')
             ->join('lista_costos', 'lista_costos.id', '=', 'registro_costos.LCostos_id')
             ->select('costoName','registro_costos.id','monto','type','LCostos_id')
@@ -70,9 +70,19 @@ class RegistroCostoController extends Controller
      * @param  \App\Models\Cuentas  $cuentas
      * @return \Illuminate\Http\Response
      */
-    public function show(RegistroCosto $cuentas)
+    public function show($mes)
     {
-        $registro = RegistroCosto::where('id', $cuentas)->first();
+        $idCostosMes = $this->comprobarMes($mes);
+        $Costos = DB::table('registro_costos')
+            ->join('lista_costos', 'lista_costos.id', '=', 'registro_costos.LCostos_id')
+            ->select('costoName','registro_costos.id','monto','type','LCostos_id')
+            ->where('lista_costos.id',$idCostosMes)
+            ->get();
+            // $Costos= $Costos->groupBy('type');
+            // $Costos->dd();
+            // return $Costos;
+
+        return view('Costos.index',compact('Costos'))->with('id',$idCostosMes);
     }
 
     /**
@@ -134,17 +144,20 @@ class RegistroCostoController extends Controller
         return redirect()->route('Costos.index');
     }
 
-    public function comprobarMes(){
+    public function comprobarMes($mes){
         $Costos = DB::table('lista_costos')
-        ->whereMonth('created_at', date('m'))
+        ->whereMonth('created_at', $mes)
         ->first();
 
         if(empty($Costos)){
+            $d=mktime(6, 1, 1, $mes,1, 2021);
             $LCostos = new ListaCostos();
+            $LCostos->created_at = date("Y-m-d h:i:s", $d);
             $LCostos->save();
             $Costos = DB::table('lista_costos')
-            ->whereMonth('created_at', date('m'))
+            ->whereMonth('created_at', date($mes))
             ->first();
+            return $Costos->id;
         }
         return $Costos->id;
     }

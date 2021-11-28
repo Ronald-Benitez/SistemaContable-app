@@ -1,5 +1,14 @@
 @extends('theme.base')
 
+@section('css')
+    <style>
+        .dropdown-menu {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    </style>
+@endsection
+
 @section('content')
 @php
     $sum = array(
@@ -137,6 +146,31 @@
                     Datos
                 </a></td>
                 @endif
+                <div class="dropdown ms-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Libro diario por mes
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 1) }}">Enero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 2) }}">Febrero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 3) }}">Marzo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 4) }}">Abril</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 5) }}">Mayo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 6) }}">Junio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 7) }}">Julio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 8) }}">Agosto</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 9) }}">Septiembre</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 10) }}">Octubre</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 11) }}">Noviembre</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Costos.show', 12) }}">Diciembre</a>
+                    </li>
+                </ul>
+            </div>
       </div>
 </div>
 
