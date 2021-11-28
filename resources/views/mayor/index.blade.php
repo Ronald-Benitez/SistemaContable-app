@@ -6,7 +6,7 @@
     $sumDebe = 0; //izquierda
     $sumHaber = 0;
     @endphp
-    <div class="container mt-3">
+    <div class="container mt-5 pt-5">
         <p class="fs-1 text-center rounded-pill border border-dark ">Libro mayor</p>
     </div>
 

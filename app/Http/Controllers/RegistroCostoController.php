@@ -125,9 +125,13 @@ class RegistroCostoController extends Controller
      * @param  \App\Models\RegistroCosto  $cuentas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RegistroCosto $cuentas)
+    public function destroy( $id)
     {
-        //
+        $registro = RegistroCosto::where('id', $id)->first();
+        $registro->delete();
+        session()->put('alert', "danger");
+        session()->put('estado', "¡ registro Eliminado con exito !");
+        return redirect()->route('Costos.index');
     }
 
     public function comprobarMes(){

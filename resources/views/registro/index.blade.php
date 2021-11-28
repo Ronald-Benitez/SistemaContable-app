@@ -1,7 +1,7 @@
 @extends('theme.base')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container mt-3 py-5">
         <?php
         $partida = 0;
         $fecha = 0;

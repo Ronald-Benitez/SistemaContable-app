@@ -8,6 +8,8 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ComprobacionController;
 use App\Http\Controllers\RegistroCostoController;
 use App\Http\Controllers\ListaCostosController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +32,11 @@ Route::resource('mayor', MayorController::class);
 Route::resource('Welcome', WelcomeController::class);
 Route::resource('Comprobacion', ComprobacionController::class);
 Route::resource('Costos', RegistroCostoController::class);
+Route::resource('Usuario', UsuarioController::class);
 
 Route::delete('LCostos/{id}', [ListaCostosController::class, 'delete'])->name('LCostos.delete');
+
+Route::get('login', [LoginController::class, 'index']);
+Route::post('login', [LoginController::class, 'loguear'])->name('login.loguear');
+Route::get('logout', [LoginController::class, 'logout'])->name('login.logout');
+
