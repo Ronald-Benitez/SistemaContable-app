@@ -37,6 +37,18 @@
             </thead>
             <tbody>
                 @foreach ($registros as $registro)
+                    @if (isset($concepto) && $partida != $registro->partida)
+                        <tr>
+                            <td></td>
+                            <td> <i>{{ $concepto }}</i> </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @php
+                            $concepto = $registro->concepto;
+                        @endphp
+                    @endif
                     @if ($partida != $registro->partida)
                         <tr>
                             <td>{{ $registro->created_at }}</td>
@@ -72,11 +84,11 @@
                         <?php
                         $partida = $registro->partida;
                         $fecha = $registro->created_at;
+                        $concepto = $registro->concepto;
                         ?>
                     @endif
 
                     <tr>
-
                         <td></td>
                         <td>{{ $registro->nombre }}</td>
                         @if ($registro->tipoM == 1)
@@ -88,7 +100,15 @@
                         @endif
                         <td></td>
                     </tr>
+
                 @endforeach
+                <tr>
+                    <td></td>
+                    <td> <i>{{ $concepto }}</i> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
         <div class="container">
