@@ -352,7 +352,7 @@ class GeneralController extends Controller
             session_start();
             $_SESSION["estado"] = "Sin datos para mostrar";
             $_SESSION["alert"] = "warning";
-            return view('welcome');
+            return redirect()->route('General.index');
         }
 
         return view('general.index')->with('datos', $datos);

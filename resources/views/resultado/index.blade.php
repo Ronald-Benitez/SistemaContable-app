@@ -1,12 +1,62 @@
 @extends('theme.base')
 
+@section('css')
+    <style>
+        .drop {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+    </style>
+@endsection
+
 @section('content')
     @php
     $suma = 0;
+    session_start();
     @endphp
     <div class="container mt-5 pt-4">
         <p class="fs-1 text-center rounded-pill border border-dark ">Estado de resultados</p>
     </div>
+    @if (isset($_SESSION['estado']))
+        <div class="alert alert-{{ $_SESSION['alert'] }}" role="alert">
+            {{ $_SESSION['estado'] }}
+        </div>
+    @endif
+
+    <?php
+    if (isset($_SESSION['estado'])) {
+        unset($_SESSION['estado']);
+        unset($_SESSION['alert']);
+    }
+    ?>
+    <center>
+        <div class="btn-group btn-group-lg my-2 ">
+            <div class="dropdown d-flex">
+                <button class="btn btn-outline-dark dropdown-toggle flex-fill" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Estado de resultados por mes
+                </button>
+                <ul class="dropdown-menu drop" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '1') }}">Enero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '2') }}">Febrero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '3') }}">Marzo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '4') }}">Abril</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '5') }}">Mayo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '6') }}">Junio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '7') }}">Julio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '8') }}">Agosto</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '9') }}">Septiembre</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '10') }}">Octubre</a></li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '11') }}">Noviembre</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('Resultados.show', '12') }}">Diciembre</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </center>
     <div class="container">
         <div class="table-responsive">
             <table class="table table-striped">
@@ -114,4 +164,18 @@
         </svg>
         Volver al inicio
     </a>
+@endsection
+
+@section('script')
+    <script>
+        $(function() {
+            setTimeout(() => {
+                $(".alert").remove();
+            }, 5000);
+
+            $("#debe").val(currency(sDebe))
+            $("#haber").val(currency(sHaber))
+        });
+    </script>
+
 @endsection

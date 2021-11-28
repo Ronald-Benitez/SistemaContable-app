@@ -27,7 +27,7 @@
 
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        
+
                         <li>
                             <a class="dropdown-item" href="{{ route('login.logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -41,7 +41,7 @@
                             </a>
                         </li>
                     </ul>
-                {{-- Admin Estados --}}
+                    {{-- Admin Estados --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,34 +49,38 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="{{route('Registro.index') }}">
+                            <a class="dropdown-item" href="{{ route('Registro.index') }}">
                                 Libro diario
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{route('Registro.create') }}">
+                            <a class="dropdown-item" href="{{ route('Registro.create') }}">
                                 Agregar partida
                             </a>
                         </li>
-                        <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="{{route('mayor.index') }}">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('mayor.index') }}">
                                 Libro mayor
                             </a>
                         </li>
-                        <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="{{route('Comprobacion.index') }}">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('Comprobacion.index') }}">
                                 Balance de Comprobacion
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{route('Resultados.index') }}">
-                                Balance de Resultados
+                            <a class="dropdown-item" href="{{ route('Resultados.index') }}">
+                                Estado de Resultados
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{route('General.index') }}">
+                            <a class="dropdown-item" href="{{ route('General.index') }}">
                                 Balance General
                             </a>
                         </li>
@@ -96,13 +100,13 @@
                                 Sistema de costos
                             </a>
                         </li>
-                      
+
                     </ul>
 
-                {{-- Fin costos --}}
-                
+                    {{-- Fin costos --}}
+
             </ul>
-            
+
         </div>
     </div>
 </nav>

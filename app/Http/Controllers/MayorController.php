@@ -33,7 +33,7 @@ class MayorController extends Controller
             session_start();
             $_SESSION["estado"] = "Sin datos para mostrar";
             $_SESSION["alert"] = "warning";
-            return view('welcome');
+            return redirect()->route('mayor.index');
         }
 
         return view('mayor.index')->with('registros', $registros);
