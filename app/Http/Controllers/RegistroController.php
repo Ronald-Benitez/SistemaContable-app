@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registro;
+use App\Models\Concepto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\session;
@@ -19,8 +20,9 @@ class RegistroController extends Controller
     {
         $registros = DB::table('registros')
             ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
-            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto")
-            ->whereMonth('created_at', date('m'))
+            ->join('conceptos', 'conceptos.npartida', '=', "registros.partida")
+            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto", "conceptos.concepto")
+            ->whereMonth('registros.created_at', date('m'))
             ->get();
         return view('registro.index')->with('registros', $registros);
     }
@@ -69,6 +71,12 @@ class RegistroController extends Controller
                 "idCuenta" => $cuentas[$i],
             ]);
         }
+
+        Concepto::create([
+            "concepto" => $request->input("concepto"),
+            "npartida" => $partida[0]->partida + 1
+        ]);
+
         session_start();
         $_SESSION["estado"] = "Registro éxitoso";
         $_SESSION["alert"] = "success";
@@ -116,8 +124,15 @@ class RegistroController extends Controller
             ->where('partida', $registro)
             ->get();
 
+        $concepto = DB::table('conceptos')->where('npartida', $registro)->first();
+
         $now = Carbon::now();
-        return view('registro.form')->with('cuentas', $cuentas)->with('now', $now)->with("partida", $registro)->with("registros", $registros);
+        return view('registro.form')
+            ->with('cuentas', $cuentas)
+            ->with('now', $now)
+            ->with("partida", $registro)
+            ->with("registros", $registros)
+            ->with("concepto", $concepto->concepto);
     }
 
     /**
@@ -145,6 +160,12 @@ class RegistroController extends Controller
             $rUpdate = Registro::where('id', $ids[$i]);
             $rUpdate->update($data);
         }
+
+        $concepto = Concepto::where('npartida', $registro);
+        $concepto->update([
+            'concepto' => $request->input('concepto')
+        ]);
+
         session_start();
         $_SESSION["estado"] = "Actualización éxitosa";
         $_SESSION["alert"] = "success";
