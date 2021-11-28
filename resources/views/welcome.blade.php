@@ -1,143 +1,69 @@
 @extends('theme.base')
 
 @section('content')
+@section('css')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,600&display=swap" rel="stylesheet">
+
+<style>
+.titulo{
+   font-family: 'Dancing Script', cursive;
+}
+.subTitulo{
+    font-family: 'Source Code Pro', monospace;
+}
+</style>
+    
+@endsection
 @include('theme.alert')
-    <div class="container py-5">
-        <h1 class="text-center">Working in progress</h1>
-
+    <div class="container d-flex justify-content-center  ">
         
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            {{-- Libro diario --}}
-            <a href="{{ route('Registro.index') }}" class="btn btn-secondary m-2">Libro diario actual</a>
-            <div class="dropdown m-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Libro diario por mes
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '1']) }}">Enero</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '2']) }}">Febrero</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '3']) }}">Marzo</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '4']) }}">Abril</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '5']) }}">Mayo</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '6']) }}">Junio</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '7']) }}">Julio</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '8']) }}">Agosto</a>
-                    </li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '9']) }}">Septiembre</a>
-                    </li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '10']) }}">Octubre</a>
-                    </li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '11']) }}">Noviembre</a>
-                    </li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '12']) }}">Diciembre</a>
-                    </li>
-                </ul>
+          <div class="card mb-1 mt-5 pt-2" style="max-width: 1000px;">
+            <div class="row g-0">
+              <div class="col-md-4   ">
+                <img src="{{ asset('img/Logo.png') }}" class=" img-responsiverounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                    {{-- Texto --}}
+                <div class="position-relative overflow-hidden p-1 text-center">
+                    <div class="col-md-8 p-lg-5 mx-auto my-5">
+                      <div class="mb-1"><p class="titulo fs-1 text m-0 p-0 b-0">Ele's </p><p class="text-muted subTitulo">Sistema contable</p></div>
+                      <p class="lead fw-normal">
+                        Ropa y accesorios para damas y caballeros <br>
+                        El Salvador 🇸🇻<br>
+                        Envíos a todo el país 🚚<br>
+                        Entregas coordinadas en zonas céntricas de San Miguel
+                      </p>
+                      @if (session()->missing('typeUser'))
+                      <a class="btn btn-outline-secondary" href="{{ route('login.loguear') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                        <path fill-rule="evenodd"
+                            d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
+                        Iniciar sesión
+                     </a>
+                      @endif
+
+                    </div>
+                    <div class="product-device shadow-sm d-none d-md-block"></div>
+                    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+                  </div>
+                {{-- /texto --}}
+                  
+
+                </div>
+              </div>
             </div>
-
-            {{-- Libro mayor --}}
-            <a href="{{ route('mayor.index') }}" class="btn btn-secondary m-2">Libro mayor actual</a>
-            <div class="dropdown m-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Libro mayor por mes
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '1') }}">Enero</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '2') }}">Febrero</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '3') }}">Marzo</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '4') }}">Abril</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '5') }}">Mayo</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '6') }}">Junio</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '7') }}">Julio</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '8') }}">Agosto</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '9') }}">Septiembre</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '10') }}">Octubre</a></li>
-                    <li><a class="dropdown-item" href="{{ route('mayor.show', '11') }}">Noviembre</a></li>
-                    <li><a class="dropdown-item" href="{{ route('Registro.show', '12') }}">Diciembre</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        {{-- Balance de comprobación --}}
-        <a href=" {{ route('Comprobacion.index') }}" class="btn btn-secondary m-2">Balance de comprobación actual</a>
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Balance de comprobación por mes
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '1') }}">Enero</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '2') }}">Febrero</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '3') }}">Marzo</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '4') }}">Abril</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '5') }}">Mayo</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '6') }}">Junio</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '7') }}">Julio</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '8') }}">Agosto</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '9') }}">Septiembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '10') }}">Octubre</a></li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '11') }}">Noviembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('Comprobacion.show', '12') }}">Diciembre</a>
-                </li>
-            </ul>
-        </div>
-
-        {{-- Estado de resultados --}}
-        <a href=" {{ route('Resultados.index') }}" class="btn btn-secondary m-2">Estado de resultados actual</a>
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Estado de resultados por mes
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '1') }}">Enero</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '2') }}">Febrero</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '3') }}">Marzo</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '4') }}">Abril</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '5') }}">Mayo</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '6') }}">Junio</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '7') }}">Julio</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '8') }}">Agosto</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '9') }}">Septiembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '10') }}">Octubre</a></li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '11') }}">Noviembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('Resultados.show', '12') }}">Diciembre</a>
-                </li>
-            </ul>
-        </div>
-
-        {{-- Balance general --}}
-        <a href=" {{ route('General.index') }}" class="btn btn-secondary m-2">Balance general actual</a>
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Balance general por mes
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="{{ route('General.show', '1') }}">Enero</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '2') }}">Febrero</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '3') }}">Marzo</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '4') }}">Abril</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '5') }}">Mayo</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '6') }}">Junio</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '7') }}">Julio</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '8') }}">Agosto</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '9') }}">Septiembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '10') }}">Octubre</a></li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '11') }}">Noviembre</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('General.show', '12') }}">Diciembre</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+          </div>
     </div>
 @endsection
 
