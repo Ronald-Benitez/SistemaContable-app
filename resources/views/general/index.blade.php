@@ -7,7 +7,7 @@
     $debe = 0;
     $haber = 0;
     @endphp
-    <div class="container mt-3">
+    <div class="container mt-5 pt-3">
         <p class="fs-1 text-center rounded-pill border border-dark ">Balance de comprobación</p>
     </div>
     <div class="container">

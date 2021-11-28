@@ -4,7 +4,7 @@
     @php
     $suma = 0;
     @endphp
-    <div class="container mt-3">
+    <div class="container mt-5 pt-4">
         <p class="fs-1 text-center rounded-pill border border-dark ">Estado de resultados</p>
     </div>
     <div class="container">
@@ -35,8 +35,8 @@
                     </tr>
                     <tr>
                         <td>(=)</td>
-                        <td>Utilidad bruta</td>
-                        <td>{{ number_format($suma, 2) }}</td>
+                        <td><b>Utilidad bruta</b></td>
+                        <td><b>{{ number_format($suma, 2) }}</b></td>
                     </tr>
                     <tr>
                         <td>(-)</td>
@@ -48,8 +48,8 @@
                     </tr>
                     <tr>
                         <td>(=)</td>
-                        <td>Utilidad antes de operación</td>
-                        <td>{{ number_format($suma, 2) }}</td>
+                        <td><b>Utilidad antes de operación</b></td>
+                        <td><b>{{ number_format($suma, 2) }}</b></td>
                     </tr>
                     <tr>
                         <td>(-)</td>
@@ -65,8 +65,8 @@
                     </tr>
                     <tr>
                         <td>(=)</td>
-                        <td>Utilidad antes de impuesto</td>
-                        <td>{{ number_format($suma, 2) }}</td>
+                        <td><b>Utilidad antes de impuesto</b></td>
+                        <td><b>{{ number_format($suma, 2) }}</b></td>
                     </tr>
                     <tr>
                         <td>(-)</td>
@@ -93,11 +93,11 @@
                     <tr>
                         <td>(=)</td>
                         @if ($suma > 0)
-                            <td>Utilidad neta</td>
+                            <td><b> Utilidad neta</b></td>
                         @else
-                            <td>Perdida neta</td>
+                            <td><b>Perdida neta</b></td>
                         @endif
-                        <td>{{ number_format($suma, 2) }}</td>
+                        <td><b>{{ number_format($suma, 2) }}</b></td>
                     </tr>
                 </tfoot>
 
