@@ -71,12 +71,12 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{route('Resultados.index') }}">
                                 Balance de Resultados
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{route('General.index') }}">
                                 Balance General
                             </a>
                         </li>
