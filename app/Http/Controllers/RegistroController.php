@@ -93,8 +93,9 @@ class RegistroController extends Controller
     {
         $registros = DB::table('registros')
             ->join('cuentas', 'cuentas.idC', '=', 'registros.idCuenta')
-            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto")
-            ->whereMonth('created_at', $registro)
+            ->join('conceptos', 'conceptos.npartida', '=', "registros.partida")
+            ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto", "conceptos.concepto")
+            ->whereMonth('registros.created_at', $registro)
             ->get();
         if (empty($registros[0])) {
             session_start();
