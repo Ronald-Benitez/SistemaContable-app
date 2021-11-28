@@ -3,7 +3,7 @@
 @section('content')
     @php
     $count = 0;
-    $nombres = ['Activo', 'Pasivo', 'Capital'];
+    $nombres = ['Activo', 'Pasivo', 'Capital', 'Ingresos', 'Costos', 'Gastos'];
     $debe = 0;
     $haber = 0;
     @endphp
@@ -39,7 +39,7 @@
                                 <td>{{ $row->idC }}</td>
                                 <td>{{ $row->nombre }}</td>
                                 @if ($row->saldo >= 0)
-                                    @if ($row->tipoC == '1')
+                                    @if ($row->tipoC == '1' || $row->tipoC == '5' || $row->tipoC == '6')
                                         <td>{{ abs($row->saldo) }}</td>
                                         <td></td>
                                         @php
@@ -53,7 +53,7 @@
                                         @endphp
                                     @endif
                                 @else
-                                    @if ($row->tipoC == '1')
+                                    @if ($row->tipoC == '1' || $row->tipoC == '5' || $row->tipoC == '6')
                                         <td></td>
                                         <td>{{ abs($row->saldo) }}</td>
                                         @php

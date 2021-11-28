@@ -7,7 +7,7 @@ use App\Models\Registro;
 use App\Models\Cuentas;
 use Illuminate\Support\Facades\DB;
 
-class data
+class base
 {
     public $nombre;
     public $saldo = 0;
@@ -18,9 +18,9 @@ class ComprobacionController extends Controller
 {
     public function verificar($arreglo, $dato)
     {
-        foreach ($arreglo as $data) {
+        foreach ($arreglo as $base) {
             $contador = 0;
-            foreach ($data as $item) {
+            foreach ($base as $item) {
 
                 if ($item->nombre == $dato) {
                     return $contador;
@@ -71,7 +71,7 @@ class ComprobacionController extends Controller
 
                 $datos[$this->nombrar($registro->tipoC)][$exists]->saldo += $this->valor($registro);
             } else {
-                $nuevo = new data();
+                $nuevo = new base();
                 $nuevo->nombre = $registro->nombre;
                 $nuevo->saldo = $this->valor($registro);
                 $nuevo->tipoC = $registro->tipoC;
