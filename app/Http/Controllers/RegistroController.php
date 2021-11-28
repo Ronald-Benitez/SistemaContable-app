@@ -101,7 +101,7 @@ class RegistroController extends Controller
             session_start();
             $_SESSION["estado"] = "Sin datos para mostrar";
             $_SESSION["alert"] = "warning";
-            return view('welcome');
+            return redirect()->route('Registro.index');
         }
         return view('registro.index')->with('registros', $registros);
     }

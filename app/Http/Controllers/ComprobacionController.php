@@ -111,7 +111,7 @@ class ComprobacionController extends Controller
             session_start();
             $_SESSION["estado"] = "Sin datos para mostrar";
             $_SESSION["alert"] = "warning";
-            return view('welcome');
+            return redirect()->route('Comprobacion.index');
         }
 
         return view('comprobacion.index')->with('datos', $datos);

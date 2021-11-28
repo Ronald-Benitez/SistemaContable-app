@@ -1,5 +1,19 @@
 @extends('theme.base')
 
+@section('css')
+    <style>
+        .drop {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+    </style>
+@endsection
+
+@php
+session_start();
+@endphp
+
 @section('content')
     @php
     $flag = $registros[0]->nombre;
@@ -9,7 +23,42 @@
     <div class="container mt-5 pt-5">
         <p class="fs-1 text-center rounded-pill border border-dark ">Libro mayor</p>
     </div>
+    @if (isset($_SESSION['estado']))
+        <div class="alert alert-{{ $_SESSION['alert'] }}" role="alert">
+            {{ $_SESSION['estado'] }}
+        </div>
+    @endif
 
+    <?php
+    if (isset($_SESSION['estado'])) {
+        unset($_SESSION['estado']);
+        unset($_SESSION['alert']);
+    }
+    ?>
+    <center>
+        <div class="btn-group btn-group-lg my-2 ">
+            <div class="dropdown d-flex">
+                <button class="btn btn-outline-dark dropdown-toggle flex-fill" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Libro mayor por mes
+                </button>
+                <ul class="dropdown-menu drop" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '1') }}">Enero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '2') }}">Febrero</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '3') }}">Marzo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '4') }}">Abril</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '5') }}">Mayo</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '6') }}">Junio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '7') }}">Julio</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '8') }}">Agosto</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '9') }}">Septiembre</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '10') }}">Octubre</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '11') }}">Noviembre</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mayor.show', '12') }}">Diciembre</a></li>
+                </ul>
+            </div>
+        </div>
+    </center>
     <div class="container-fluid row d-flex flex-wrap flex-sm-wrap justify-content-evenly">
         <div class="col-sm-7 col-md-6 col-lg-3 container-fluid m-3">
             <table class="table table-striped">
@@ -121,4 +170,18 @@
         </svg>
         Volver al inicio
     </a>
+@endsection
+
+@section('script')
+    <script>
+        $(function() {
+            setTimeout(() => {
+                $(".alert").remove();
+            }, 5000);
+
+            $("#debe").val(currency(sDebe))
+            $("#haber").val(currency(sHaber))
+        });
+    </script>
+
 @endsection

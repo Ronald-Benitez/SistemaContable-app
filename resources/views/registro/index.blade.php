@@ -1,4 +1,13 @@
 @extends('theme.base')
+@section('css')
+    <style>
+        .drop {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+    </style>
+@endsection
 
 @section('content')
     <div class="container mt-3 py-5">
@@ -25,6 +34,42 @@
         <center>
             <div class="btn-group btn-group-lg my-2 ">
                 <a href="{{ route('Registro.create') }}" class="btn btn-outline-dark">Nueva partida</a>
+                <div class="dropdown d-flex">
+                    <button class="btn btn-outline-dark dropdown-toggle flex-fill" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Libro diario por mes
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '1']) }}">Enero</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '2']) }}">Febrero</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '3']) }}">Marzo</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '4']) }}">Abril</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '5']) }}">Mayo</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '6']) }}">Junio</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '7']) }}">Julio</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '8']) }}">Agosto</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('Registro.show', ['Registro' => '9']) }}">Septiembre</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('Registro.show', ['Registro' => '10']) }}">Octubre</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('Registro.show', ['Registro' => '11']) }}">Noviembre</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('Registro.show', ['Registro' => '12']) }}">Diciembre</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </center>
         <table class="table">
@@ -117,6 +162,7 @@
                 <input type="text" readonly class="form-control balance" id="debe">
                 <span class="input-group-text">Haber</span>
                 <input type="text" readonly class="form-control balance" id="haber">
+
             </div>
         </div>
     </div>
