@@ -38,15 +38,15 @@
                 <tfoot>
                     <tr>
                         <td>Costo unitario</td>
-                        <td id="costoU"></td>
+                        <td id="costoU">$0.00</td>
                     </tr>
                     <tr>
                         <td>Precio Unitario</td>
-                        <td><div id="precioU"></div></td>
+                        <td><div id="precioU">$0.00</div></td>
                     </tr>
                     <tr>
                         <td>Precio Unitario + IVA</td>
-                        <td id="precioIVA">a</td>
+                        <td id="precioIVA">$0.00</td>
                     </tr>
                 </tfoot>
             </table>
