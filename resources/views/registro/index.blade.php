@@ -39,7 +39,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Libro diario por mes
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu drop" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '1']) }}">Enero</a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('Registro.show', ['Registro' => '2']) }}">Febrero</a>
