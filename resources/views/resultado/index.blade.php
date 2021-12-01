@@ -104,14 +104,14 @@
                     <tr>
                         <td>(-)</td>
                         <td>Reserva legal</td>
-                        @if ($suma > 0)
+                        {{-- @if ($suma > 0)
                             <td>{{ number_format($suma * 0.07, 2) }}</td>
                             @php
                                 $suma -= number_format($suma * 0.07, 2);
                             @endphp
-                        @else
-                            <td>-</td>
-                        @endif
+                        @else --}}
+                        <td>-</td>
+                        {{-- @endif --}}
                     </tr>
                     <tr>
                         <td>(=)</td>
@@ -121,7 +121,7 @@
                     <tr>
                         <td>(-)</td>
                         <td>Impuestos por pagar</td>
-                        @if ($suma > 0)
+                        {{-- @if ($suma > 0)
                             @if ($suma > 150000)
                                 <td>{{ number_format($suma * 0.3, 2) }}</td>
                                 @php
@@ -134,9 +134,9 @@
                                 @endphp
                             @endif
 
-                        @else
-                            <td>-</td>
-                        @endif
+                        @else --}}
+                        <td>-</td>
+                        {{-- @endif --}}
                     </tr>
 
                 <tfoot>

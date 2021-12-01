@@ -205,46 +205,46 @@ class GeneralController extends Controller
     public function resultado($array, $ingresos, $costos, $gastos, $ajuste)
     {
         $suma = $ingresos - $costos - $gastos;
-        $reserva = 0;
-        $impuesto = 0;
-        // echo $suma;
-        // echo "<br>";
+        // $reserva = 0;
+        // $impuesto = 0;
+        // // echo $suma;
+        // // echo "<br>";
 
-        if ($suma > 0) {
-            $reserva += round($suma * 0.07, 2);
-            $suma -= $reserva;
-            // echo $suma;
-            // echo "<br>";
-        }
+        // if ($suma > 0) {
+        //     $reserva += round($suma * 0.07, 2);
+        //     $suma -= $reserva;
+        //     // echo $suma;
+        //     // echo "<br>";
+        // }
 
-        if ($suma > 0) {
-            if ($suma > 150000) {
-                $impuesto += round($suma * 0.3, 2);
-            } else {
-                $impuesto += round($suma * 0.25, 2);
-            }
-            $suma -= $impuesto;
-            // echo $suma;
-            // echo "<br>";
-        }
+        // if ($suma > 0) {
+        //     if ($suma > 150000) {
+        //         $impuesto += round($suma * 0.3, 2);
+        //     } else {
+        //         $impuesto += round($suma * 0.25, 2);
+        //     }
+        //     $suma -= $impuesto;
+        //     // echo $suma;
+        //     // echo "<br>";
+        // }
 
-        if ($ajuste < 0) {
-            $impuesto += $ajuste * -1;
-        } else if ($ajuste > 0) {
-            array_push($array['Activo'], $this->newData('Remanente de IVA', $ajuste, 1, '1.0.5'));
-        }
+        // if ($ajuste < 0) {
+        //     $impuesto += $ajuste * -1;
+        // } else if ($ajuste > 0) {
+        //     array_push($array['Activo'], $this->newData('Remanente de IVA', $ajuste, 1, '1.0.5'));
+        // }
 
-        if ($reserva > 0) {
-            array_push($array['Capital'], $this->newData('Reserva Legal', $reserva, 3, '3.0.4'));
-        }
+        // if ($reserva > 0) {
+        //     array_push($array['Capital'], $this->newData('Reserva Legal', $reserva, 3, '3.0.4'));
+        // }
 
-        if ($impuesto > 0) {
-            array_push($array['Pasivo'], $this->newData('Impuestos por pagar', $impuesto, 2, '2.0.9'));
-        }
+        // if ($impuesto > 0) {
+        //     array_push($array['Pasivo'], $this->newData('Impuestos por pagar', $impuesto, 2, '2.0.9'));
+        // }
 
-        if ($suma > 0) {
-            array_push($array['Capital'], $this->newData('Resultado del período', round($suma, 2), 3, '3.0.3'));
-        }
+        // if ($suma > 0) {
+        array_push($array['Capital'], $this->newData('Resultado del período', round($suma, 2), 3, '3.0.3'));
+        // }
 
 
 
