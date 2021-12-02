@@ -45,11 +45,11 @@
                     }
                     echo $output;
                 @endphp
-                {{-- <option selected value>-- Tipo de costo --</option>
-            <option value="MD">MD:  Material directo</option>
-            <option value="MOD">MOD: Mano de obra directa</option>
-            <option value="CIF">CIF</option>
-            <option value="Periodo">Perdiodo</option> --}}
+                <option selected value>-- Tipo de costo --</option>
+                <option value="MD">MD: Material directo</option>
+                <option value="MOD">MOD: Mano de obra directa</option>
+                <option value="CIF">CIF</option>
+                <option value="Periodo">Periodo</option>
             </select>
             <input type="text" name="LCostos_id" value="{{ $registro->LCostos_id }}" class="invisible">
             <input type="text" name="id" value="{{ $registro->id }}" class="invisible">

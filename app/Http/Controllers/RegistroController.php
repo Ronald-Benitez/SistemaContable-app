@@ -24,6 +24,12 @@ class RegistroController extends Controller
             ->select('registros.partida', 'registros.created_at', 'cuentas.nombre', "registros.tipoM", "registros.monto", "conceptos.concepto")
             ->whereMonth('registros.created_at', date('m'))
             ->get();
+        if (empty($registros[0])) {
+            session_start();
+            $_SESSION["estado"] = "Sin datos para mostrar";
+            $_SESSION["alert"] = "warning";
+            return redirect()->route('Welcome.index');
+        }
         return view('registro.index')->with('registros', $registros);
     }
 
