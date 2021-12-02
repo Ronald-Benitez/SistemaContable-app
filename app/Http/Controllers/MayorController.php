@@ -17,6 +17,12 @@ class MayorController extends Controller
             ->whereMonth('created_at', date('m'))
             ->orderBy("cuentas.idC")
             ->get();
+        if (empty($registros[0])) {
+            session_start();
+            $_SESSION["estado"] = "Sin datos para mostrar";
+            $_SESSION["alert"] = "warning";
+            return redirect()->route('Welcome.index');
+        }
         return view('mayor.index')->with('registros', $registros);
     }
 

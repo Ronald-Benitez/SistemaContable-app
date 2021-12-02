@@ -20,19 +20,35 @@
         }
 
         /* 
-                        @media (min-width:750px) {
-                            .imgX {
-                                min-width: 400px;
+                                                    @media (min-width:750px) {
+                                                        .imgX {
+                                                            min-width: 400px;
 
-                            } */
+                                                        } */
         }
 
     </style>
 
 @endsection
 @include('theme.alert')
-<div class="container d-flex justify-content-center  mt-5">
+@php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+@endphp
+@if (isset($_SESSION['estado']))
+    <div class="alert alert-{{ $_SESSION['alert'] }} mt-5 pt-4" role="alert">
+        {{ $_SESSION['estado'] }}
+    </div>
+@endif
 
+<?php
+if (isset($_SESSION['estado'])) {
+    unset($_SESSION['estado']);
+    unset($_SESSION['alert']);
+}
+?>
+<div class="container d-flex justify-content-center  mt-5">
     <div class="card mb-1 mt-5 pt-2" style="max-width: 1000px;">
         <div class="row g-0 d-flex justify-content-center">
             <div class="col-lg-4 d-flex align-items-center justify-content-center">
